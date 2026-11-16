@@ -448,7 +448,7 @@ button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canva
         <div class="grid grid-cols-1 gap-3">
           <div>
             <h2 class="text-lg font-semibold">Optimisation du tirant d’eau</h2>
-            <p class="mt-1 text-xs text-slate-500">Fusion conservatrice : Québec ↔ Pointe-des-Ormes réutilise directement le moteur Transit actuel. Les nouvelles origines Montréal Section 110 et Contrecœur utilisent une extension isolée jusqu’à Pointe-des-Ormes, puis reprennent exactement le moteur Transit courant vers Québec. Le seuil DSQ demeure 7,0 kn. Depuis la v1.24, sur ce tronçon amont : vitesses maximales sur le fond de 14 kn (Section 110 → Île des Barques), 12 kn (CIP Tracy → Pointe aux Pins) et 15 kn (Île des Barques → POR); ralentissement amont volontaire au dixième de nœud; stratégie Québec 50 à partir de POR, seulement si aucune autre forme ne passe.</p>
+            <p class="mt-1 text-xs text-slate-500">Fusion conservatrice : Québec ↔ Pointe-des-Ormes réutilise directement le moteur Transit actuel. Les nouvelles origines Montréal Section 110 et Contrecœur utilisent une extension isolée jusqu’à Pointe-des-Ormes, puis reprennent exactement le moteur Transit courant vers Québec. Le seuil DSQ demeure 7,0 kn. Depuis la v1.24, sur ce tronçon amont : vitesses maximales sur le fond de 14 kn (Section 110 → S-110), 12 kn (CIP Tracy → Pointe aux Pins) et 15 kn (S-110 → POR); ralentissement amont volontaire au dixième de nœud; stratégie Québec 50 à partir de POR, seulement si aucune autre forme ne passe.</p>
           </div>
           <label class="text-sm">
             <span class="block text-slate-700 mb-1">Direction</span>
@@ -669,6 +669,7 @@ button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canva
       r.html=postBanner(r.forecast)+(r.html||'');
       $('ltResult').innerHTML=r.html||'<div class="text-sm">Aucun résultat.</div>';
       $('ltSource').textContent=(r.currents||'')+` · calcul ${Math.round((Date.now()-t0)/1000)} s`;
+      {const sec=/SECOURS/.test(r.currents||'');$('ltSource').style.color=sec?'#f59e0b':'';$('ltSource').style.fontWeight=sec?'700':'';}   // v1.48 : source de secours bien visible
       $('ltCopyLog').classList.toggle('lt-hidden',!r.log);$('ltCopyLog').dataset.log=r.log||'';
       // le résultat serveur contient le bouton « Recalculer » : il relance le calcul avec recalcul
       const rb=$('ltResult').querySelector('#recalcBtn');if(rb){rb.disabled=false;}
